@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.3.5"
 gem 'rubygems-update', '>= 3.3.22'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.16.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5", ">= 7.1.5.1"
