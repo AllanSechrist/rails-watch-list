@@ -2,31 +2,29 @@
   <h2>
     <%= @list.name %>
   </h2>
-  <div class="d-flex">
-    <div class="row">
-      <% if @list.bookmarks.any? %>
-        <% @list.bookmarks.each do |bookmark| %>
-          <div class="col-6 col-md-4">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h3><%= bookmark.movie.title %></h3>
-                <p><%= bookmark.comment %></p>
-              </div>
-              <div class="card-footer">
-                <%= delete_bookmark(bookmark) %>
-              </div>
+  <div class="row">
+    <% if @list.bookmarks.any? %>
+      <% @list.bookmarks.each do |bookmark| %>
+        <div class="col-6 col-md-4">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h3><%= bookmark.movie.title %></h3>
+              <p><%= bookmark.comment %></p>
+            </div>
+            <div class="card-footer">
+              <%= delete_bookmark(bookmark) %>
             </div>
           </div>
-      <% end %>
-    <% else %>
-      <div class="col-6 col-md-4">
-        <h2>There are no bookmarks</h2>
-      </div>
+        </div>
     <% end %>
-    </div>
+  <% else %>
     <div class="col-6 col-md-4">
-      <%= render "bookmark", locals: { list: @list, bookmark: @bookmark } %>
+      <h2>There are no bookmarks</h2>
     </div>
+  <% end %>
   </div>
-  <%= link_to "Add Bookmark", new_list_bookmark_path(@list), class: 'btn btn-primary' %>
+  <div class="col-6 col-md-4">
+    <%= render "bookmark", locals: { list: @list, bookmark: @bookmark } %>
+    <%= link_to "Delete List", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger my-3' %>
+  </div>
 </div>
