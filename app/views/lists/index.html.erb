@@ -5,6 +5,11 @@
         <div class="col-6 col-md-4">
           <%= link_to list_path(list), class: 'text-decoration-none' do %>
             <div class="card">
+              <% if list.photo.attached? %>
+                <%= cl_image_tag list.photo.key %>
+              <% else %>
+                <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU', class: 'card-img-top' %>
+              <% end %>
               <div class="card-body">
                 <h3 class="text-center"><%= list.name %></h3>
               </div>
